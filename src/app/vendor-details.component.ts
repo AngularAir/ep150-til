@@ -2,26 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-item-details',
+  selector: 'app-vendor-details',
   template: `
-    <h2>Item #{{itemId}} for Vendor #{{vendorId}}</h2>
+    <h2>Vendor #{{vendorId}}</h2>
+    <a routerLink="items">View Items</a>
+    <router-outlet></router-outlet>
   `,
   styles: []
 })
-export class ItemDetailsComponent implements OnInit {
-  vendorId;
-  itemId;
+export class VendorDetailsComponent implements OnInit {
+  vendorId: string;
 
-  constructor(private activatedRoute: ActivatedRoute) {
-  }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       params => {
         this.vendorId = params['vendorId'];
-        this.itemId = params['id'];
       }
-    );
+    )
   }
 
 }
